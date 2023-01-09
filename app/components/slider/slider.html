@@ -1,0 +1,99 @@
+<div class="container" ng-controller="sliderCtrl" ng-init="startSlider()">
+  <div class="row mt-5">
+    <div class="col-md-4 float-right">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Interval:</span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          ng-model="intervalTime"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button
+        class="btn btn-success"
+        ng-if="!requesting"
+        ng-click="startSlider()"
+      >
+        Start Request
+      </button>
+      <button class="btn btn-danger" ng-if="requesting" ng-click="stopSlider()">
+        Stop Request
+      </button>
+    </div>
+  </div>
+
+  <div class="row mt-5" ng-if="start">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <img
+        class="img-responsive"
+        style="width: 30%; max-height: 200px; margin-top: 2%"
+        src="/assets/img/Spinner-1s-200px (1).gif"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  <div class="row mt-2">
+    <div class="mySlides" ng-repeat="data in dataset">
+      <div class="numbertext">1 / 6</div>
+      <img
+        class="img-responsive"
+        style="width: 100%; max-height: 300px; margin-top: 2%"
+        ng-src="{{data}}"
+        alt="..."
+      />
+    </div>
+    <a class="btn btn-warning prev mt-5" onclick="plusSlides(-1)">❮</a>
+    <a class="btn btn-warning next mt-5" onclick="plusSlides(1)">❯</a>
+  </div>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides((slideIndex += n));
+    }
+
+    function currentSlide(n) {
+      showSlides((slideIndex -= n));
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      //   let dots = document.getElementsByClassName("demo");
+      //   let captionText = document.getElementById("caption");
+      if (n > slides.length) {
+        slideIndex = 1;
+      }
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+      for (i = 0; i < slides.length; i++) {
+        slides.length > 1
+          ? slides[i].style.setProperty("display", "none", "important")
+          : "";
+      }
+      //   for (i = 0; i < dots.length; i++) {
+      //     dots[i].className = dots[i].className.replace(" active", "");
+      //   }
+      slides.length > 1
+        ? slides[slideIndex - 1].style.setProperty(
+            "display",
+            "block",
+            "important"
+          )
+        : "";
+      //   dots[slideIndex-1].className += " active";
+      //   captionText.innerHTML = dots[slideIndex-1].alt;
+    }
+  </script>
+</div>

@@ -1,0 +1,14 @@
+
+
+================================================For Successful Run=============================================
+
+1-in app.modele.js change "apiUrl";
+2- Data in Get Call Must be in
+ {
+ "images":[
+           'image1Address',
+           'image2Address',
+          ]
+
+ }.
+ 3. In Interval Time api responce time not included.
